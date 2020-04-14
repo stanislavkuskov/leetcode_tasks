@@ -3,6 +3,21 @@
 
 using namespace std;
 
+class Utils {
+public:
+    void print_vector(const vector<int> & nums){
+        cout << "[";
+        for (auto num = nums.cbegin(); num != nums.cend(); ++num){
+            if (num != nums.cbegin()){
+                cout << ", ";
+            }
+            cout << *num;
+        }
+        cout << "]" << endl;
+    };
+
+};
+
 class TwoSum {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -55,8 +70,11 @@ public:
 };
 
 int main() {
+    Utils utils;
+
     TwoSum two_sum;
     vector<int> nums = {2, 33, 7, 11, 15, 10, 2, 44, 34, 13};
     vector<int> res = two_sum.twoSum(nums, 9);
+    utils.print_vector(res);
     return 0;
 }
