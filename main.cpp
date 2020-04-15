@@ -93,14 +93,50 @@ public:
     }
 };
 
+//167. Two Sum II - Input array is sorted
+class TwoSum2 {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        vector<int> res(2);
+
+        Utils utils;
+
+        int last = numbers.size() - 1;
+
+        for (int i = 0;i < numbers.size(); i++){
+            int first = i + 1;
+            int desired = target - numbers[i];
+
+            int idx = utils.bin_search(numbers, first, last, desired);
+            if ((idx != -1) and (idx != i)){
+                res[0] = i + 1;
+                res[1] = idx + 1;
+                break;
+            }
+        }
+        return res;
+    }
+};
+
 int main() {
     Utils utils;
 
-    TwoSum two_sum;
-//    vector<int> nums = {2, 33, 7, 11, 15, 10, 2, 44, 34, 13};
-    vector<int> nums = {2, 5, 15, 7, 19,33};
-//    vector<int> nums = {3, 2, 4};
-    vector<int> res = two_sum.twoSum(nums, 9);
-    utils.print_vector(res);
+    // 1. Two Sum
+    {
+        TwoSum two_sum;
+//        vector<int> nums = {2, 33, 7, 11, 15, 10, 2, 44, 34, 13};
+//        vector<int> nums = {2, 5, 15, 7, 19,33};
+        vector<int> nums = {3, 2, 3};
+        vector<int> res = two_sum.twoSum(nums, 6);
+        utils.print_vector(res);
+    }
+    // 167. Two Sum II - Input array is sorted
+    {
+        TwoSum2 two_sum_2;
+        vector<int> nums = {2, 7, 11, 15};
+        vector<int> res = two_sum_2.twoSum(nums, 9);
+        utils.print_vector(res);
+    }
+
     return 0;
 }
